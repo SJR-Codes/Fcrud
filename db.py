@@ -40,9 +40,9 @@ def create_blog(db, form):
     snippet = form['snippet']
     body = form['body']
 
-    mydict = { "title": title, "snippet": snippet, "body": body }
+    new_blog = { "title": title, "snippet": snippet, "body": body }
 
-    x = blogs_collection.insert_one(mydict)
+    x = blogs_collection.insert_one(new_blog)
 
     return(x.inserted_id)
 
