@@ -6,9 +6,10 @@
 """
 
 #add secret.py to .gitignore
-#copy this file as secret.py
-#insert your MongoDB username & password
+#rename this file as secret.py
+#insert your MongoDB username & password & url to your database
 
 class MongoUser():
-    usern = "" #MongoDB username
+    username = "" #MongoDB username
     passwd = "" #MongoDB password
+    murl = "" #MongoDB url
