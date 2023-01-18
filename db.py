@@ -34,11 +34,11 @@ def get_blog(db, id):
     #print(myquery)
     return blogs_collection.find_one(myquery) #hakee yhden
 
-def create_blog(db, request):
+def create_blog(db, form):
     blogs_collection = db['Testi']
-    title = request.form['title']
-    snippet = request.form['snippet']
-    body = request.form['body']
+    title = form['title']
+    snippet = form['snippet']
+    body = form['body']
 
     mydict = { "title": title, "snippet": snippet, "body": body }
 

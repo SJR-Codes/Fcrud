@@ -21,7 +21,7 @@ def index():
 @app.route("/blogs/create", methods = ['POST', 'GET'])
 def create():
     if request.method == 'POST':
-        id = create_blog(db, request)
+        id = create_blog(db, request.form)
         url = "/blogs/" + str(id)
 
         return redirect(url)
