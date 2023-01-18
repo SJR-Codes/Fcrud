@@ -5,10 +5,13 @@
 * Created by Samu Reinikainen
 """
 
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, flash
 from db import *
 
 app = Flask(__name__)
+
+#flash vaatii secretkey muuttujan
+app.secret_key = b"ncd lc,cvnfjoirjfenfdinff098302"
 
 db = connectToMongo()
 
@@ -23,7 +26,7 @@ def create():
     if request.method == 'POST':
         id = create_blog(db, request.form)
         url = "/blogs/" + str(id)
-
+        flash("Blog Created!")
         return redirect(url)
     else:
         pageTitle = "Create Blog page"

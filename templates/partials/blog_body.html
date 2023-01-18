@@ -1,5 +1,12 @@
 <body>
     {% include 'partials/navbar.html' %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color:rgb(21, 205, 21)"><b>{% message %}</b></p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 <div class="blogs content">
     <h2>{{content.title}}</h2>
     <p>{{content.body}}</p>
