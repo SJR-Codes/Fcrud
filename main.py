@@ -6,8 +6,12 @@
 """
 
 from flask import Flask, render_template
+from db import *
 
 app = Flask(__name__)
+
+db = connectToMongo()
+get_all_blogs(db)
 
 @app.route("/")
 def index():
