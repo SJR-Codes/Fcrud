@@ -9,6 +9,11 @@
     {% endwith %}
 <div class="details content">
     <h2>{{content.title}}</h2>
+    <p>{{content.snippet}}</p>
     <p>{{content.body}}</p>
+</div>
+<div class="details content">
+    <a href="{{url_for('delete_blog', blog_id=content._id)}}" class="delete">DELETE</a>
+    <a href="{{url_for('update_blog', blog_id=content._id)}}" class="update">UPDATE</a>
 </div>
 </body>

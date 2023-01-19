@@ -34,6 +34,13 @@ def get_blog(db, id):
     #print(myquery)
     return blogs_collection.find_one(myquery) #hakee yhden
 
+def delete_blog(db, id):
+    blogs_collection = db['Testi']
+    objInstance = ObjectId(id)
+    myquery = { "_id": objInstance }
+    
+    return blogs_collection.delete_one(myquery) #poistaa yhden
+
 def create_blog(db, form):
     blogs_collection = db['Testi']
     title = form['title']

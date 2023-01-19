@@ -4,7 +4,7 @@
     <h2>All Blogs</h2>
 
     {% for item in content %}
-    <a class="single" href="/blogs/{{item._id}}">
+    <a class="single" href="/blog/{{item._id}}">
     <h3>{{item.title}}</h3>
     <p>{{item.snippet}}</p></a>
     {% endfor %}
