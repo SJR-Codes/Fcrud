@@ -6,12 +6,13 @@
 """
 
 from flask import Flask, render_template, redirect, request, flash
+from secret import FlashSecret as FS
 from db import *
 
 app = Flask(__name__)
 
 #flash vaatii secretkey muuttujan
-app.secret_key = b"ncd lc,cvnfjoirjfenfdinff098302"
+app.secret_key = FS.flashSecret
 
 db = connectToMongo()
 
