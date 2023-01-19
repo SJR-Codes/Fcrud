@@ -16,7 +16,7 @@
     <a href="{{url_for('upd_blog', blog_id=content._id)}}" class="update">UPDATE</a>
     <br><br>
     <form action="/delete_blog/{{ content._id }}" method="post">
-        <input type="submit" class="Delete" value="Delete">
+        <input type="submit" class="Delete" value="Delete" onclick="return confirm('Entry will be deleted permanently\nAre you sure?')">
     </form>
 </div>
 </body>
