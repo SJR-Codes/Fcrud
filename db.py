@@ -28,16 +28,14 @@ def get_all_blogs(db):
         return blogs_collection.find() #hakee kaikki
 
 def get_blog(db, id):
-    blogs_collection = db['Testi']    
-    objInstance = ObjectId(id)
-    myquery = { "_id": objInstance }
-    #print(myquery)
+    blogs_collection = db['Testi']
+    myquery = { "_id": ObjectId(id) }
+    
     return blogs_collection.find_one(myquery) #hakee yhden
 
 def delete_blog(db, id):
     blogs_collection = db['Testi']
-    objInstance = ObjectId(id)
-    myquery = { "_id": objInstance }
+    myquery = { "_id": ObjectId(id) }
     
     return blogs_collection.delete_one(myquery) #poistaa yhden
 
@@ -52,5 +50,18 @@ def create_blog(db, form):
     x = blogs_collection.insert_one(new_blog)
 
     return(x.inserted_id)
+
+def update_blog(db, id, form):
+    blogs_collection = db['Testi']
+    title = form['title']
+    snippet = form['snippet']
+    body = form['body']
+
+    myquery = { "_id": ObjectId(id) }
+    newvalues = { "$set": { "title": title, "snippet": snippet, "body": body } }
+
+    x = blogs_collection.update_one(myquery, newvalues)
+
+    return(x)
 
 #print(db.list_database_names())

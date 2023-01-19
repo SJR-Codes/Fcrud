@@ -33,8 +33,8 @@ def create():
         pageTitle = "Create Blog page"
         return render_template("create.html", title=pageTitle)
 
-@app.route("/delete_blog/")
-def delete_blog(blog_id):
+@app.route("/delete_blog/<blog_id>", methods = ['POST', 'GET'])
+def del_blog(blog_id):
     do = delete_blog(db, blog_id)
     if do:
         flash("Blog Deleted!")
@@ -42,14 +42,21 @@ def delete_blog(blog_id):
         flash("Nothing Happens!")
     return redirect("/")
 
-@app.route("/update_blog/")
-def update_blog(blog_id):
-    do = update_blog(db, blog_id)
-    if do:
-        flash("Blog Updated!")
+@app.route("/update_blog/<blog_id>", methods = ['POST', 'GET'])
+def upd_blog(blog_id):
+    if request.method == 'POST':
+        do = update_blog(db, blog_id, request.form)
+        if do:
+            flash("Blog Updated!")
+        else:
+            flash("Nothing Happens!")
+        url = "/blog/" + str(blog_id)
+        return redirect(url)
+        
     else:
-        flash("Nothing Happens!")
-    return redirect("/")
+        blog = get_blog(db, blog_id)
+        pageTitle = "Update Blog page"
+        return render_template("update.html", title=pageTitle, content=blog)
 
 @app.route("/blog/<page_id>")
 def blog(page_id):
