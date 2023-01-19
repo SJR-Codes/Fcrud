@@ -8,6 +8,8 @@
 from flask import Flask, render_template, redirect, request, flash, url_for
 from secret import FlashSecret as FS
 from db import *
+import json
+from bson import json_util
 
 app = Flask(__name__)
 
@@ -64,6 +66,17 @@ def blog(page_id):
     blog = get_blog(db, id)
     pageTitle = "Blog page"
     return render_template("blog.html", title=pageTitle, content=blog)
+
+@app.route("/api/")
+def get_api_all_blogs():
+    blogs = get_all_blogs(db)
+    return json.loads(json_util.dumps(blogs))
+
+@app.route("/api/<page_id>")
+def get_api_blog(page_id):
+    blog = get_blog(db, page_id)
+
+    return json.loads(json_util.dumps(blog))
 
 # run blocks of code only if our program is the main program executed
 if __name__ == "__main__":

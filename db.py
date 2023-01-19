@@ -34,6 +34,12 @@ def get_blog(db, id):
     
     return db.find_one(myquery) #hakee yhden
 
+def get_api_blog(db, id):
+    #blogs_collection = db['Testi']
+    myquery = { "_id": ObjectId(id) }
+    
+    return db.find_one(myquery) #hakee yhden
+
 def delete_blog(db, id):
     #blogs_collection = db['Testi']
     myquery = { "_id": ObjectId(id) }
