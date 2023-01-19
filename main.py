@@ -70,12 +70,13 @@ def blog(page_id):
 @app.route("/api/")
 def get_api_all_blogs():
     blogs = get_all_blogs(db)
+    #objectId fix
     return json.loads(json_util.dumps(blogs))
 
 @app.route("/api/<page_id>")
 def get_api_blog(page_id):
     blog = get_blog(db, page_id)
-
+    #objectId fix
     return json.loads(json_util.dumps(blog))
 
 # run blocks of code only if our program is the main program executed
